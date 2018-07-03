@@ -1,0 +1,1 @@
+.app header{height:40px;transform-style:preserve-3d;}.app header .title{display:inline-block;margin:0 20px;font-size:200%;color:#192d48}.app header .quote{margin:0 20px}.app header .layout-left{position:absolute;top:50%;left:0;transform:translateY(-50%);text-align:left}.app header .layout-right{position:absolute;top:50%;right:0;transform:translateY(-50%);text-align:right}

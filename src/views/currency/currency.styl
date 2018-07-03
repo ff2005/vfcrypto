@@ -1,0 +1,114 @@
+.currency {
+  text-align: center;
+  width: 100%;
+  background-color: rgb(25,45,72);
+  color: #fff;
+
+  .action-container {
+    position: relative;
+
+    .action {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+
+      a {
+        display: inline-block;
+        vertical-align: middle;
+        width: 30px;
+        height: 30px;
+        background-color: rgba(255,255,255,0.3);
+        color: #fff;
+        line-height: 30px;
+        font-size: 12px;
+        text-align: center;
+        border-radius: 30px;
+        text-decoration: none;
+        @media only screen and (max-width: 600px) {
+          width: 35px;
+          height: 35px;
+          line-height: 35px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .row {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    .info {
+      max-width: 750px;
+      margin: 0 auto;
+
+      @media only screen and (max-width: 600px) {
+        margin-bottom: 25px;
+      }
+
+      .column {
+        text-align: left;
+        display: inline-block;
+        width: 33%;
+        vertical-align: middle;
+        @media only screen and (max-width: 600px) {
+          width: 100%;
+          margin: 0;
+        }
+      }
+    }
+  
+    .label {
+      display: block;
+      margin: 50px 0;
+      white-space: nowrap;
+      text-align: left;
+      font-size: 110%;
+      @media only screen and (max-width: 600px) {
+        text-align: right;
+        margin: 30px 0 0 0;
+        padding: 0 20%;
+      }
+
+      .symbol {
+        padding-right: 5px;
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      .quote {
+        vertical-align: top;
+        font-size: 60%;
+        color: rgb(53,211,134);
+        margin: -2px 5px;
+        display: inline-block;
+      }
+
+      .bubble {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 20px;
+        display: inline-block;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.3);
+        margin: 0 10px;
+      }
+
+      .header {
+        padding-bottom: 10px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 11px !important;
+        @media only screen and (max-width: 600px) {
+          text-align: left;
+        }
+      }
+
+      &.rank {
+        @media only screen and (max-width: 600px) {
+          text-align: left;
+        }
+      }
+    }
+  }
+
+}

@@ -1,0 +1,135 @@
+.currencies {
+  text-align: center;
+  width: 100%;
+
+  a {
+    text-decoration: none;
+  }
+
+  .row {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    @media only screen and (max-width: 600px) {
+      border-bottom: 0 none;
+      margin: 15px 0;
+    }
+
+    .info {
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    &.header {
+      padding: 8px 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      background-color: rgb(235,240,244);
+
+      @media only screen and (max-width: 600px) {
+        display: none;
+      }
+
+      .label {
+        color: rgba(0, 0, 0, 0.3);
+        font-weight: bolder;
+        text-transform: uppercase;
+        font-size: 11px !important;
+      }
+    }
+  
+    .label {
+      display: inline-block;
+      vertical-align: middle;
+      white-space: nowrap;
+      text-align: left;
+      color: rgba(0, 0, 0, 0.9);
+
+      @media only screen and (max-width: 600px) {
+        display: block;
+        width: 60% !important;
+        text-align: right;
+        margin: 15px 20%;
+        background-color: rgb(235,240,244);
+      }
+
+      .symbol {
+        padding-right: 5px;
+        color: rgba(67,69,71, 0.4);
+      }
+
+      .header {
+        display: none;
+        @media only screen and (max-width: 600px) {
+          display: block;
+          padding: 10px 15% 45px;
+          margin: 10px -15% -35px;
+          background-color: #ebf0f4;
+          color: rgba(0,0,0,0.3);
+          font-weight: bolder;
+          text-transform: uppercase;
+          font-size: 11px !important;
+          text-align: left;
+        }
+      }
+
+      &.name {
+        width: 25%;
+        font-size: 110%;
+
+        .index {
+          display: inline-block;
+          vertical-align: middle;
+          width: 12px;
+          font-size: 10px;
+          line-height: 16px;
+        }
+
+        img {
+          margin: -3px 10px;
+        }
+      }
+
+      &.price {
+        width: 20%;
+        font-size: 110%;
+      }
+
+      &.cap {
+        width: 35%;
+        font-size: 90%;
+      }
+
+      &.change {
+        width: 20%;
+        font-size: 90%;
+
+        &:after {
+          font-family: 'icon' !important;
+          font-size: 80%;
+          margin: 0 3px;
+        }
+
+        &.positive {
+          color: rgb(42,192,124)
+          &:after {
+            content: "\ea3a";
+          }
+        }
+
+        &.negative {
+          color: rgb(255,0,0);
+          &:after {
+            content: "\ea3e";
+          }
+        }
+
+        &.equal {
+          &:after {
+            content: "\e900";
+          }
+        }
+      }
+    }
+  }
+
+}
