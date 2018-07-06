@@ -28,8 +28,7 @@
     "react-scripts": "1.1.4",
     "redux": "^4.0.0",
     "redux-async-effects": "github:ff2005/redux-async-effects",
-    "redux-persist": "^5.10.0",
-    "seamless-immutable": "^7.1.3"
+    "redux-persist": "^5.10.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.5",
@@ -44,12 +43,21 @@
   },
   "standard": {
     "parser": "babel-eslint",
-    "globals": [ "describe", "it", "fetch", "navigator", "XMLHttpRequest", "FormData" ]
+    "globals": [
+      "describe",
+      "it",
+      "fetch",
+      "navigator",
+      "XMLHttpRequest",
+      "FormData"
+    ]
   },
   "babel": {
     "env": {
       "production": {
-        "plugins": [ "transform-remove-console" ]
+        "plugins": [
+          "transform-remove-console"
+        ]
       }
     }
   }

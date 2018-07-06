@@ -79,7 +79,7 @@ class Currency extends React.PureComponent {
     }
   }
 
-  renderClose () {
+  renderAction () {
     return (
       <div className={'action-container'}>
         <div className={'action'}>
@@ -93,39 +93,39 @@ class Currency extends React.PureComponent {
     console.log('Currency.render', { props: this.props, state: this.state, context: this.context })
     const { data, loading } = this.state
     if (loading) {
-      return <div>Loading...</div>
+      return <div className={'loading'}>Loading</div>
     }
     if (data) {
       return (
         <div className={'currency'}>
-          {this.renderClose()}
+          {this.renderAction()}
           <div className={'row'}>
             <div className={'info'}>
               <div className={'column'}>
-                <div className={[ 'label', 'rank' ].join(' ')}>
+                <div className={['label', 'rank'].join(' ')}>
                   <span className={'header'}>Rank</span>
                   <span className={'bubble'}>{data.rank}</span>
                 </div>
               </div>
               <div className={'column'}>
-                <div className={[ 'label', 'cap' ].join(' ')}>
+                <div className={['label', 'cap'].join(' ')}>
                   <div className={'header'}>Market Cap</div>
                   <span className={'symbol'}>{data.cap.symbol}</span>
                   {data.cap.value}
                 </div>
-                <div className={[ 'label', 'circulating' ].join(' ')}>
+                <div className={['label', 'circulating'].join(' ')}>
                   <div className={'header'}>Circulating Supply</div>
                   {data.supply.circulating}
                   <span className={'quote'}>{data.symbol}</span>
                 </div>
               </div>
               <div className={'column'}>
-                <div className={[ 'label', 'volume' ].join(' ')}>
+                <div className={['label', 'volume'].join(' ')}>
                   <div className={'header'}>24H Volume</div>
                   <span className={'symbol'}>{data.volume.symbol}</span>
                   {data.volume.value}
                 </div>
-                <div className={[ 'label', 'total' ].join(' ')}>
+                <div className={['label', 'total'].join(' ')}>
                   <div className={'header'}>Total Supply</div>
                   {data.supply.total}
                   <span className={'quote'}>{data.symbol}</span>

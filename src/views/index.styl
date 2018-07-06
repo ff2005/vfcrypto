@@ -12,6 +12,32 @@ body {
 
 .app {
   text-align: center;
+
+
+  .loading {
+    color: #000;
+    display: inline-block;
+    font-size: 18px;
+    height 40px;
+    vertical-align: middle;
+    line-height: 40px;
+    margin: 30px;
+    &:after {
+      color: #000;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 50px;
+      width: 50px;
+      height 50px;
+      font-family: 'icon' !important;
+      font-size: 50px;
+      content: "\e97f";
+      color: #000;
+      animation: spin 4s infinite linear;
+      margin: 10px;
+    }
+  }
+
 }
 
 @font-face {
@@ -43,8 +69,11 @@ body {
 .icon-equals:before {
   content: "\e900";
 }
+.icon-close:before {
+  content: "\e5cd";
+}
 .icon-spinner:before {
-  content: "\e984";
+  content: "\e97f";
 }
 .icon-arrow-up:before {
   content: "\ea3a";
@@ -57,4 +86,9 @@ body {
 }
 .icon-arrow-left:before {
   content: "\ea40";
+}
+
+@keyframes spin {
+  from {transform:rotate(360deg);}
+  to {transform:rotate(0deg);}
 }

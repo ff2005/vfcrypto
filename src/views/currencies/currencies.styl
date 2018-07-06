@@ -2,6 +2,59 @@
   text-align: center;
   width: 100%;
 
+  .action-container {
+    position: relative;
+
+    .action {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+
+      > div {
+        display: inline-block;
+        vertical-align: middle;
+        width: 30px;
+        height: 30px;
+        background-color: #B5BABE;
+        color: #fff;
+        line-height: 30px;
+        font-size: 12px;
+        text-align: center;
+        border-radius: 30px;
+        text-decoration: none;
+        @media only screen and (max-width: 600px) {
+          width: 35px;
+          height: 35px;
+          line-height: 35px;
+          font-size: 14px;
+        }
+        &:before {
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: inline-block;
+          font-family: 'icon' !important;
+          font-size: 22px;
+          font-weight: 100;
+          content: "\e97f";
+          vertical-align: middle;
+          line-height: 30px;
+          text-align: center;
+          width: 30px;
+          height: 30px;
+          color: rgba(255, 255, 255, 0.25);
+          animation: spin 4s infinite linear;
+          @media only screen and (max-width: 600px) {
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+
   a {
     text-decoration: none;
   }
