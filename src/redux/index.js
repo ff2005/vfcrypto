@@ -1,8 +1,9 @@
 import { persistCombineReducers } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import { combineEffects } from 'redux-async-effects'
 import createStore from './store'
 
-import { ApplicationAction, ApplicationSelector, ApplicationReducer } from './application/redux'
+import { ApplicationAction, ApplicationSelector, ApplicationReducer, ApplicationEffect } from './application/redux'
 
 export { ApplicationAction, ApplicationSelector }
 
@@ -19,5 +20,9 @@ export default () => {
     application: ApplicationReducer
   })
 
-  return createStore(rootReducer)
+  const rootEffects = combineEffects(
+    ApplicationEffect
+  )
+
+  return createStore(rootReducer, rootEffects)
 }

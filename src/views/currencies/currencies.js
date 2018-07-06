@@ -1,18 +1,22 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { mapReduxState, mapReduxDispatch } from 'redux-async-effects'
-import { ApplicationSelector } from '../../redux'
+import { ApplicationSelector, ApplicationAction } from '../../redux'
 import { Link } from 'react-router-dom'
 import { api } from '../../services'
 import { toCurrency } from '../../helpers'
+import { RefreshTimeout } from '../components'
 import './currencies.css'
 
 class Currencies extends React.PureComponent {
   static mapReduxStateToProps = mapReduxState(({ select }) => ({
-    quote: select(ApplicationSelector.quote())
+    quote: select(ApplicationSelector.quote()),
+    refresh: select(ApplicationSelector.refresh())
   }))
 
-  static mapReduxDispatchToProps = mapReduxDispatch(({ dispatch }) => ({}))
+  static mapReduxDispatchToProps = mapReduxDispatch(({ dispatch }) => ({
+    startRefresh: () => dispatch(ApplicationAction.startRefresh())
+  }))
 
   state = {
     data: undefined,
@@ -34,7 +38,7 @@ class Currencies extends React.PureComponent {
       change: Math.round(parseFloat(data[key].quotes[quote].percent_change_24h) * 100) / 100
     }))
 
-  getCoins = async (quote) => {
+  getCoins = async (quote, startRefresh) => {
     try {
       if (quote) {
         this.setState({ loading: true })
@@ -46,6 +50,7 @@ class Currencies extends React.PureComponent {
             quote,
             loading: false
           })
+          this.props.startRefresh()
         } else {
           throw new Error('Invalid data')
         }
@@ -65,19 +70,30 @@ class Currencies extends React.PureComponent {
   componentWillReceiveProps (nextProps) {
     console.log('Currencies.componentWillReceiveProps', { props: this.props, nextProps })
     const nextQuote = nextProps && nextProps.quote
-    if (nextQuote && nextQuote !== this.props.quote) {
+    const nextRefresh = nextProps && nextProps.refresh
+    if ((nextQuote && nextQuote !== this.props.quote) || (this.props.refresh === false && nextRefresh === true)) {
       this.getCoins(nextQuote)
     }
   }
 
   renderHeader () {
     return (
-      <div className={[ 'row', 'header' ].join(' ')}>
+      <div className={['row', 'header'].join(' ')}>
         <div className={'info'}>
-          <div className={[ 'label', 'name' ].join(' ')}>Cryptocurrency</div>
-          <div className={[ 'label', 'price' ].join(' ')}>Price</div>
-          <div className={[ 'label', 'cap' ].join(' ')}>Market Cap</div>
-          <div className={[ 'label', 'change' ].join(' ')}>24H Change</div>
+          <div className={['label', 'name'].join(' ')}>Cryptocurrency</div>
+          <div className={['label', 'price'].join(' ')}>Price</div>
+          <div className={['label', 'cap'].join(' ')}>Market Cap</div>
+          <div className={['label', 'change'].join(' ')}>24H Change</div>
+        </div>
+      </div>
+    )
+  }
+
+  renderAction () {
+    return (
+      <div className={'action-container'}>
+        <div className={'action'}>
+          <RefreshTimeout />
         </div>
       </div>
     )
@@ -88,11 +104,12 @@ class Currencies extends React.PureComponent {
     const { data, loading } = this.state
     const size = 16
     if (loading) {
-      return <div>Loading...</div>
+      return <div className={'loading'}>Loading</div>
     }
     if (data) {
       return (
         <div className={'currencies'}>
+          {this.renderAction()}
           {this.renderHeader()}
           {data.map(
             (coin) =>
@@ -100,23 +117,23 @@ class Currencies extends React.PureComponent {
                 <Link key={coin.id} to={`/${coin.name}`}>
                   <div className={'row'}>
                     <div className={'info'}>
-                      <div className={[ 'label', 'name' ].join(' ')}>
+                      <div className={['label', 'name'].join(' ')}>
                         <div className={'header'}>Cryptocurrency</div>
                         <span className={'index'}>{coin.index}</span>
                         <img src={`https://s2.coinmarketcap.com/static/img/coins/${size}x${size}/${coin.id}.png`} alt={coin.name} height={size} width={size} />
                         {coin.name}
                       </div>
-                      <div className={[ 'label', 'price' ].join(' ')}>
+                      <div className={['label', 'price'].join(' ')}>
                         <div className={'header'}>Price</div>
                         <span className={'symbol'}>{coin.price.symbol}</span>
                         {coin.price.value}
                       </div>
-                      <div className={[ 'label', 'cap' ].join(' ')}>
+                      <div className={['label', 'cap'].join(' ')}>
                         <div className={'header'}>Market Cap</div>
                         <span className={'symbol'}>{coin.price.symbol}</span>
                         {coin.cap.value}
                       </div>
-                      <div className={[ 'label', 'change', coin.change > 0 ? 'positive' : coin.change < 0 ? 'negative' : 'equal' ].join(' ')}>
+                      <div className={['label', 'change', coin.change > 0 ? 'positive' : coin.change < 0 ? 'negative' : 'equal'].join(' ')}>
                         <div className={'header'}>24H Change</div>
                         {coin.change}%
                       </div>
